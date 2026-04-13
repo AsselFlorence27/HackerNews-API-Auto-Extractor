@@ -1,15 +1,12 @@
 import sqlite3
-from src.logger import get_logger
-
-logger = get_logger(__name__)
+import logging
 
 def load_data(stories, db_path="data.db"):
-    """Insert or update stories into SQLite database."""
     if not stories:
-        logger.warning("No stories to insert. Skipping DB operation.")
+        logging.warning("No stories to insert. Skipping DB operation.")
         return
         
-    logger.info(f"Connecting to database at {db_path}...")
+    logging.info(f"Connecting to database at {db_path}...")
     conn = None
     try:
         conn = sqlite3.connect(db_path)
@@ -33,9 +30,9 @@ def load_data(stories, db_path="data.db"):
             ''', (story['id'], story['title'], story['url'], story['score'], story['author'], story['retrieved_at']))
             
         conn.commit()
-        logger.info("Successfully loaded data into database.")
+        logging.info("Successfully loaded data into database.")
     except sqlite3.Error as e:
-        logger.error(f"Database error: {e}")
+        logging.error(f"Database error: {e}")
     finally:
         if conn:
             conn.close()

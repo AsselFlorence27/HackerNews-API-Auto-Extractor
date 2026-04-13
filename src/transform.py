@@ -1,7 +1,5 @@
 import datetime
-from src.logger import get_logger
-
-logger = get_logger(__name__)
+import logging
 
 def clean_story(item_data):
     """Transform raw API response into a standardized dictionary."""
@@ -15,8 +13,7 @@ def clean_story(item_data):
     }
 
 def transform_data(raw_stories):
-    """Process a list of raw API responses."""
-    logger.info(f"Transforming {len(raw_stories)} raw stories.")
+    logging.info(f"Transforming {len(raw_stories)} raw stories.")
     cleaned_data = [clean_story(item) for item in raw_stories if item.get("id")]
-    logger.info(f"Successfully transformed {len(cleaned_data)} stories.")
+    logging.info(f"Successfully transformed {len(cleaned_data)} stories.")
     return cleaned_data

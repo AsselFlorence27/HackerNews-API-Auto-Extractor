@@ -1,17 +1,16 @@
-# HackerNews ETL Pipeline
+# HackerNews API Auto-Extractor
 
-An automated data pipeline that extracts trending stories from HackerNews and persists them into a local SQLite database for downstream analytics.
+A Python pipeline that extracts trending stories from HackerNews and saves them to a local SQLite database.
 
 ## Overview
-This project serves as a reliable data feed, removing the need for manual CSV handling. It automatically fetches the top stories, cleans the raw JSON payloads, and implements an upsert mechanism to track engagement metrics over time.
+I built this project to automate data collection from HackerNews. It fetches the top stories, cleans the raw JSON responses, and updates the database tracking the stories over time.
 
-## Architecture & Enterprise Patterns
+## Architecture
 - **Source**: HackerNews API (topstories)
-- **Pipeline**: Python (`requests`) with modularized responsibilities (`src/`)
+- **Pipeline**: Python (`requests`)
 - **Storage**: SQLite (`data.db`)
 - **Automation**: GitHub Actions (Scheduled daily cron job)
-- **Testing**: `pytest` unit testing suite (`tests/`) to ensure data transformations are robust before hitting the database.
-- **Observability**: Standardized trace logging included.
+- **Testing**: `pytest` unit testing suite (`tests/`)
 
 ## Setup and Usage
 
